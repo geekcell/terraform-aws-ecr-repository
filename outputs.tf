@@ -1,3 +1,8 @@
+output "name" {
+  description = "The name of the repository."
+  value       = aws_ecr_repository.main.name
+}
+
 output "arn" {
   description = "The ARN of the repository."
   value       = aws_ecr_repository.main.arn
