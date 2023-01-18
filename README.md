@@ -54,6 +54,7 @@ Module to create an AWS ECR repository with lifecycle policies.
 | Name | Description |
 |------|-------------|
 | <a name="output_arn"></a> [arn](#output\_arn) | The ARN of the repository. |
+| <a name="output_name"></a> [name](#output\_name) | The name of the repository. |
 | <a name="output_url"></a> [url](#output\_url) | The URL of the repository (in the form aws\_account\_id.dkr.ecr.region.amazonaws.com/repositoryName). |
 
 ## Providers
