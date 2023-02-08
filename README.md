@@ -43,7 +43,7 @@ Module to create an AWS ECR repository with lifecycle policies.
 |------|-------------|------|---------|:--------:|
 | <a name="input_force_delete"></a> [force\_delete](#input\_force\_delete) | Delete the repository even if it contains images. | `bool` | `false` | no |
 | <a name="input_image_tag_mutability"></a> [image\_tag\_mutability](#input\_image\_tag\_mutability) | The tag mutability setting for the repository. | `string` | `"MUTABLE"` | no |
-| <a name="input_lifecycle_rules"></a> [lifecycle\_rules](#input\_lifecycle\_rules) | Lifecycle policy rules for expiring images. | <pre>list(object({<br>    description  = optional(string)<br>    tag_status   = optional(string)<br>    count_type   = string<br>    count_unit   = string<br>    count_number = number<br>  }))</pre> | <pre>[<br>  {<br>    "count_number": 10,<br>    "count_type": "sinceImagePushed",<br>    "count_unit": "days",<br>    "description": "Expire untagged images older than 10 days",<br>    "tag_status": "untagged"<br>  },<br>  {<br>    "count_number": 60,<br>    "count_type": "sinceImagePushed",<br>    "count_unit": "days",<br>    "description": "Expire images older than 60 days",<br>    "tag_status": "any"<br>  }<br>]</pre> | no |
+| <a name="input_lifecycle_rules"></a> [lifecycle\_rules](#input\_lifecycle\_rules) | Lifecycle policy rules for expiring images. | <pre>list(object({<br>    description     = optional(string)<br>    tag_status      = optional(string)<br>    tag_prefix_list = optional(list(string))<br>    count_type      = string<br>    count_unit      = optional(string)<br>    count_number    = number<br>  }))</pre> | <pre>[<br>  {<br>    "count_number": 30,<br>    "count_type": "imageCountMoreThan",<br>    "description": "Keep the last 30 tagged images",<br>    "tag_status": "tagged"<br>  },<br>  {<br>    "count_number": 10,<br>    "count_type": "sinceImagePushed",<br>    "count_unit": "days",<br>    "description": "Expire untagged images older than 10 days",<br>    "tag_status": "untagged"<br>  }<br>]</pre> | no |
 | <a name="input_name"></a> [name](#input\_name) | Name of the ECR repository. | `string` | n/a | yes |
 | <a name="input_policy"></a> [policy](#input\_policy) | Repository policy document in JSON format. | `string` | `null` | no |
 | <a name="input_scan_on_push"></a> [scan\_on\_push](#input\_scan\_on\_push) | Indicates whether images are scanned after being pushed to the repository. | `bool` | `true` | no |
@@ -54,6 +54,7 @@ Module to create an AWS ECR repository with lifecycle policies.
 | Name | Description |
 |------|-------------|
 | <a name="output_arn"></a> [arn](#output\_arn) | The ARN of the repository. |
+| <a name="output_name"></a> [name](#output\_name) | The name of the repository. |
 | <a name="output_url"></a> [url](#output\_url) | The URL of the repository (in the form aws\_account\_id.dkr.ecr.region.amazonaws.com/repositoryName). |
 
 ## Providers
@@ -61,12 +62,14 @@ Module to create an AWS ECR repository with lifecycle policies.
 | Name | Version |
 |------|---------|
 | <a name="provider_aws"></a> [aws](#provider\_aws) | >= 4.36 |
+| <a name="provider_jq"></a> [jq](#provider\_jq) | 0.2.1 |
 
 ## Resources
 
 - resource.aws_ecr_lifecycle_policy.main (main.tf#25)
 - resource.aws_ecr_repository.main (main.tf#6)
 - resource.aws_ecr_repository_policy.main (main.tf#18)
+- data source.jq_query.main (main.tf#34)
 
 # Examples
 ### Full

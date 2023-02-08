@@ -6,5 +6,10 @@ terraform {
       source  = "hashicorp/aws"
       version = ">= 4.36"
     }
+
+    jq = {
+      source  = "massdriver-cloud/jq"
+      version = "0.2.1"
+    }
   }
 }
