@@ -26,17 +26,25 @@ resource "aws_ecr_lifecycle_policy" "main" {
   count = length(var.lifecycle_rules) > 0 ? 1 : 0
 
   repository = aws_ecr_repository.main.name
-  policy = jsonencode({
-    rules = [for index, rule in var.lifecycle_rules :
-      {
+  policy     = data.jq_query.main.result
+}
+
+# AWS will complain if we send any optional values with a null value. A simple way to get around this is to use jq
+# to remove any null values from the JSON before sending it to AWS.
+data "jq_query" "main" {
+  query = "del(..|nulls)"
+  data = jsonencode({
+    rules = [
+      for index, rule in var.lifecycle_rules : {
         rulePriority = index + 1
         description  = rule.description
 
         selection = {
-          tagStatus   = rule.tag_status
-          countType   = rule.count_type
-          countUnit   = rule.count_unit
-          countNumber = rule.count_number
+          tagStatus     = rule.tag_status
+          tagPrefixList = rule.tag_prefix_list
+          countType     = rule.count_type
+          countUnit     = rule.count_unit
+          countNumber   = rule.count_number
         }
 
         action = {

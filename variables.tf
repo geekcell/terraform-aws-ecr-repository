@@ -39,25 +39,25 @@ variable "lifecycle_rules" {
   description = "Lifecycle policy rules for expiring images."
   default = [
     {
+      description  = "Keep the last 30 tagged images"
+      tag_status   = "tagged"
+      count_type   = "imageCountMoreThan"
+      count_number = 30
+    },
+    {
       description  = "Expire untagged images older than 10 days"
       tag_status   = "untagged"
       count_type   = "sinceImagePushed"
       count_unit   = "days"
       count_number = 10
-    },
-    {
-      description  = "Expire images older than 60 days"
-      tag_status   = "any"
-      count_type   = "sinceImagePushed"
-      count_unit   = "days"
-      count_number = 60
     }
   ]
   type = list(object({
-    description  = optional(string)
-    tag_status   = optional(string)
-    count_type   = string
-    count_unit   = string
-    count_number = number
+    description     = optional(string)
+    tag_status      = optional(string)
+    tag_prefix_list = optional(list(string))
+    count_type      = string
+    count_unit      = optional(string)
+    count_number    = number
   }))
 }
