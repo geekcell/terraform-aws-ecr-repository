@@ -33,9 +33,22 @@
 [![Infrastructure Tests](https://www.bridgecrew.cloud/badges/github/geekcell/terraform-aws-ecr-repository/hipaa)](https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=geekcell%2Fterraform-aws-ecr-repository&benchmark=HIPAA)
 [![Infrastructure Tests](https://www.bridgecrew.cloud/badges/github/geekcell/terraform-aws-ecr-repository/fedramp_moderate)](https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=geekcell%2Fterraform-aws-ecr-repository&benchmark=FEDRAMP+%28MODERATE%29)
 
-# Terraform AWS ECR Repository Module
+# Terraform AWS ECR Repository
 
-Module to create an AWS ECR repository with lifecycle policies.
+Are you looking for an efficient way to manage your Docker images in AWS? Look no further! Our team has extensive
+experience working with AWS ECS and has optimized this Terraform module for AWS Elastic Container Registry (ECR)
+that includes a lifecycle policy.
+
+This module makes it easy to set up and manage your ECR repositories, as well as automatically delete images that
+are older than 30 days, saving you storage space and reducing your costs. The lifecycle policy ensures that your
+repositories are clean and up-to-date, freeing up resources and improving the performance of your application.
+
+Our team has optimized this Terraform module to provide a seamless experience for users. Whether you are just
+getting started with containers or looking to enhance your current setup, this module provides a preconfigured
+solution for efficiently managing your ECS Cluster with enabled Container Insights, logging, and advanced monitoring.
+
+With this Terraform module, you can quickly set up and manage your ECR repositories, and take advantage of the
+benefits of a lifecycle policy, all with just a few simple commands. Try it out today!
 
 ## Inputs
 
@@ -66,15 +79,15 @@ Module to create an AWS ECR repository with lifecycle policies.
 
 ## Resources
 
-- resource.aws_ecr_lifecycle_policy.main (main.tf#25)
-- resource.aws_ecr_repository.main (main.tf#6)
-- resource.aws_ecr_repository_policy.main (main.tf#18)
-- data source.jq_query.main (main.tf#34)
+- resource.aws_ecr_lifecycle_policy.main (main.tf#38)
+- resource.aws_ecr_repository.main (main.tf#19)
+- resource.aws_ecr_repository_policy.main (main.tf#31)
+- data source.jq_query.main (main.tf#47)
 
 # Examples
 ### Full
 ```hcl
-module "example" {
+module "min" {
   source = "../../"
 
   name = "my-repository"

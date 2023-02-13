@@ -1,7 +1,20 @@
 /**
- * # Terraform AWS ECR Repository Module
+ * # Terraform AWS ECR Repository
  *
- * Module to create an AWS ECR repository with lifecycle policies.
+ * Are you looking for an efficient way to manage your Docker images in AWS? Look no further! Our team has extensive
+ * experience working with AWS ECS and has optimized this Terraform module for AWS Elastic Container Registry (ECR)
+ * that includes a lifecycle policy.
+ *
+ * This module makes it easy to set up and manage your ECR repositories, as well as automatically delete images that
+ * are older than 30 days, saving you storage space and reducing your costs. The lifecycle policy ensures that your
+ * repositories are clean and up-to-date, freeing up resources and improving the performance of your application.
+ *
+ * Our team has optimized this Terraform module to provide a seamless experience for users. Whether you are just
+ * getting started with containers or looking to enhance your current setup, this module provides a preconfigured
+ * solution for efficiently managing your ECS Cluster with enabled Container Insights, logging, and advanced monitoring.
+ *
+ * With this Terraform module, you can quickly set up and manage your ECR repositories, and take advantage of the
+ * benefits of a lifecycle policy, all with just a few simple commands. Try it out today!
  */
 resource "aws_ecr_repository" "main" {
   name                 = var.name
