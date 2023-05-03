@@ -37,7 +37,7 @@ variable "policy" {
 
 variable "lifecycle_rules" {
   description = "Lifecycle policy rules for expiring images."
-  default     = [
+  default = [
     {
       description     = "Keep the last 30 tagged images"
       tag_status      = "tagged"
