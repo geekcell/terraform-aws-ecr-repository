@@ -90,7 +90,7 @@ benefits of a lifecycle policy, all with just a few simple commands. Try it out 
 module "basic_example" {
   source = "../../"
 
-  name = "my-repository"
+  name = var.name
 }
 ```
 <!-- END_TF_DOCS -->
