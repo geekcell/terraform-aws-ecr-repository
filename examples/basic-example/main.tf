@@ -1,5 +1,5 @@
 module "basic_example" {
   source = "../../"
 
-  name = "my-repository"
+  name = var.name
 }
