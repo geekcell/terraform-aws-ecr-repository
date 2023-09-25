@@ -41,7 +41,7 @@ variable "lifecycle_rules" {
     {
       description     = "Keep the last 30 tagged images"
       tag_status      = "tagged"
-      tag_prefix_list = ["latest", "prod", "sha"]
+      tag_prefix_list = ["sha"]
       count_type      = "imageCountMoreThan"
       count_number    = 30
     },
