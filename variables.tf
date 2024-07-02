@@ -11,16 +11,16 @@ variable "tags" {
 }
 
 ## REPOSITORY
+variable "encryption_type" {
+  description = "The encryption type to use for the repository."
+  default     = "AES256"
+  type        = string
+}
+
 variable "image_tag_mutability" {
   description = "The tag mutability setting for the repository."
   default     = "MUTABLE"
   type        = string
-}
-
-variable "scan_on_push" {
-  description = "Indicates whether images are scanned after being pushed to the repository."
-  default     = true
-  type        = bool
 }
 
 variable "force_delete" {
@@ -29,8 +29,8 @@ variable "force_delete" {
   type        = bool
 }
 
-variable "policy" {
-  description = "Repository policy document in JSON format."
+variable "kms_key" {
+  description = "The ARN of the KMS key to use for encryption."
   default     = null
   type        = string
 }
@@ -61,4 +61,16 @@ variable "lifecycle_rules" {
     count_unit      = optional(string)
     count_number    = number
   }))
+}
+
+variable "policy" {
+  description = "Repository policy document in JSON format."
+  default     = null
+  type        = string
+}
+
+variable "scan_on_push" {
+  description = "Indicates whether images are scanned after being pushed to the repository."
+  default     = true
+  type        = bool
 }
