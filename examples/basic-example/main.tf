@@ -1,5 +1,5 @@
 module "basic_example" {
-  source = "../../"
+  source = "../.."
 
   name = var.name
 }
