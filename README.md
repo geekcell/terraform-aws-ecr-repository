@@ -88,12 +88,12 @@ benefits of a lifecycle policy, all with just a few simple commands. Try it out 
 - data source.jq_query.main (main.tf#52)
 
 # Examples
-  ### Full
-  ```hcl
-  module "basic_example" {
+### Full
+```hcl
+module "basic_example" {
   source = "../.."
 
   name = var.name
 }
-  ```
+```
 <!-- END_TF_DOCS -->
